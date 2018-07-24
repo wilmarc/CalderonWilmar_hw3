@@ -1,0 +1,109 @@
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+% Formato para los talleres del curso de Métodos Computacionales
+% Universidad de los Andes
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+\documentclass[11pt,letterpaper]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage[absolute]{textpos} % Para poner una imagen en posiciones arbitrarias
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{hyperref}
+%\decimalpoint
+
+\begin{document}
+\begin{center}
+{\Large Métodos Computacionales} \\
+Resultados Tarea 3\\
+24-07-2018\\
+\end{center}
+
+\begin{abstract}
+El caso de estudio en este trabajo es la soluci\'on de Ecuaciones Diferenciales, para observar como es el comportamiento de dos diferentes sistemas. En el primer sistema, se estudia una particula cargada ($q=1.5,m=2.5$) que se encuentra bajo la influencia de un campo magn\'etico uniforme $\vec{B}=(0.0,0.0,3.0)$ y se busca encontrar la posici\'on futura de la part\'icula con base en las condiciones iniciales dadas, Con el fin de resolver este problema se har\'a uso de ecuaciones diferenciales ordinarias. Por otro lado, el segundo sistema consta del estudio de una membrana de un tambor, la cual se buscar\'a analizar tomando los extremos (Frontera) del tambor fijos y libre para observar las diferencias entre el comportamiento de la membrana para cada caso particular.
+\end{abstract}
+
+
+\section{Movimiento de una part\'icula cargada en un campo magn\'etico $\vec{B}$}
+
+Para resolver este ejercicio se tomar\'a en cuenta que la fuerza sobre la part\'icula se define por:
+\begin{equation}
+\vec{F}= q(\vec{v} \times{\vec{B}})
+\end{equation} 
+Y que por la primera ley de Newton Se obtiene:
+\begin{equation}
+\vec{F}= m*\vec{a}
+\end{equation}
+Y tomando en cuenta que: $\frac{dx}{dt}=v$ y $\frac{dv}{dt}=a$, se obtienen las relaciones pertinentes para calcular las aceleraciones en cada componente ($x,y$ y $z$) tomando la aceleraci\'on como: \\
+\begin{center}
+$ax=\frac{q}{m}(Vy*Bz-VzBy$) \\
+$ay=\frac{q}{m}(Vz*Bx-VxBz$) \\
+$az=\frac{q}{m}(Vx*By-VyBx$) \\
+\end{center}
+Con base en lo mencionado anteriormente se usar\'a el m\'etodo de Leap-Frog para resolver las ecuaciones diferenciales $\frac{{d}^2x}{{dt}^2}=ax$, $\frac{{d}^2y}{{dt}^2}=ay$, $\frac{{d}^2z}{{dt}^2}=az$, resolviendo independientemente cada componente de la posici\'on.
+Tal implementaci\'on realizada en el archivo CalderonWilmarODE.cpp da como resultado:
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{posicion.pdf} 
+\caption{\label{fig:typical}Movimiento de la part\'icula entre $t=0.0s$ y $t=15.0s$}
+\end{center}
+\end{figure}
+Ahora Bien, con el fin de observar cortes transversales para observar como cambia la posici\'on de la part\'icula en las diferentes componenetes, se realizaron los siguientes cortes:
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{subplotspartic.pdf} 
+\caption{\label{fig:typical}Cortes transversales para el movimiento de la particula bajo el campo magn\'etico $\vec{B}=(0.0,0.0,3.0)$}
+\end{center}
+\end{figure}
+
+
+
+
+\noindent
+\section{Ecuaci\'on de Onda en Dos dimensiones}
+Con el fin de resolver la ecuaci\'on:
+\begin{equation}
+\frac{{\partial}^2\Phi(t,x,y)}{{\partial t}^2}={c}^2(\frac{{\partial}^2\Phi(t,x,y)}{{\partial x}^2}+\frac{{\partial}^2\Phi(t,x,y)}{{\partial} y^2})
+\end{equation}
+Se usar\'a el m\'etodo de diferencias finitas para poder resolver el enunciado tomando dos situaciones, (1) Cuando la membrana tenga fronteras fijas y (2) Cuando la membrana tenga fronteras libres. Con el fin de realizar un correcto tratamiento de datos se tomar\'a en cuenta la importancia de la condici\'on de estabilidad:$dt<\frac{dx}{c}$, para asegurarse que los valores de $\phi$ en el futuro no se desestabilicen y no tomen valores incongruentes.
+Tomando en cuenta que $L=1.0m$, $dx=0.01$, $dy=0.01$ y que $c=\frac{300m}{s}$ y las condiciones de posici\'on inicial dados en el archivo init.dat, en el archivo CalderonWilmarPDE.cpp se realiza el tratamiento de datos para obtener las siguientes gr\'aficas:   
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{condicioniniFF.pdf} 
+\caption{\label{fig:typical}Condici\'on inicial para el tambor con frontera fija}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{condicioniniFL.pdf} 
+\caption{\label{fig:typical}Condici\'on inicial para el tambor con frontera libre}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{condicionfinFF.pdf} 
+\caption{\label{fig:typical}Condici\'on final ($t=0.6 s$) para el tambor con frontera fija}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{condicionfinFL.pdf} 
+\caption{\label{fig:typical}Condici\'on final ($$t=0.6 s$$) para el tambor con frontera libre}
+\end{center}
+\end{figure}
+
+
+
+\end{document}
