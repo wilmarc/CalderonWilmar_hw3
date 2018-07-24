@@ -1,7 +1,6 @@
 CalderonWilmar_Resultados_hw3.pdf: CalderonWilmar_Plots_hw3.py
 	python CalderonWilmar_Plots_hw3.py	
 	pdflatex CalderonWilmar_Resultados_hw3.tex
-	
 
 CalderonWilmar_Plots_hw3.py: particula.txt frontfija.txt frontlib.txt
 	./par.exe

@@ -19,6 +19,7 @@
 \begin{document}
 \begin{center}
 {\Large Métodos Computacionales} \\
+Wilmar Andr\'es Calder\'on Guevara 201630701 \\
 Resultados Tarea 3\\
 24-07-2018\\
 \end{center}
@@ -71,6 +72,8 @@ Con el fin de resolver la ecuaci\'on:
 \frac{{\partial}^2\Phi(t,x,y)}{{\partial t}^2}={c}^2(\frac{{\partial}^2\Phi(t,x,y)}{{\partial x}^2}+\frac{{\partial}^2\Phi(t,x,y)}{{\partial} y^2})
 \end{equation}
 Se usar\'a el m\'etodo de diferencias finitas para poder resolver el enunciado tomando dos situaciones, (1) Cuando la membrana tenga fronteras fijas y (2) Cuando la membrana tenga fronteras libres. Con el fin de realizar un correcto tratamiento de datos se tomar\'a en cuenta la importancia de la condici\'on de estabilidad:$dt<\frac{dx}{c}$, para asegurarse que los valores de $\phi$ en el futuro no se desestabilicen y no tomen valores incongruentes.
+Con el fin de mantener en congruencia los resultados, es decir, con el fin que los resultados sean f\'isicamente razonables, se debe tomar un $dt$ adecuado, tal que cumpla con la condici\'on de estabilidad (Se procura que el $dt$sea lo m\'as peque\~no para evitar excesos en los c\'alculos sin causar que el mismo cause p\'erdida de informaci\'on), puesto que conforme el dt sea m\'as peque\~no este m\'as c\'alculos requerir\'a, pero conforme el dt disminuya este incrementa el n\'umero de puntos muestreados, ayudando a la exactitud de la aproximaci\'on num\'erica. Por tal raz\'on fue de vital importancia confirmar que $\frac{c*dt}{dx}<1.0$ y del mismo modo que: $\frac{c*dt}{dy}<1.0$.
+
 Tomando en cuenta que $L=1.0m$, $dx=0.01$, $dy=0.01$ y que $c=\frac{300m}{s}$ y las condiciones de posici\'on inicial dados en el archivo init.dat, en el archivo CalderonWilmarPDE.cpp se realiza el tratamiento de datos para obtener las siguientes gr\'aficas:   
 
 \begin{figure}[H]
@@ -80,6 +83,13 @@ Tomando en cuenta que $L=1.0m$, $dx=0.01$, $dy=0.01$ y que $c=\frac{300m}{s}$ y 
 \end{center}
 \end{figure}
 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{corte.pdf} 
+\caption{\label{fig:typical}Corte transversal por el tambor en $x=\frac{L}{2}$, para el tiempo inicial.}
+\end{center}
+\end{figure}
 
 \begin{figure}[H]
 \begin{center}
@@ -103,7 +113,6 @@ Tomando en cuenta que $L=1.0m$, $dx=0.01$, $dy=0.01$ y que $c=\frac{300m}{s}$ y 
 \caption{\label{fig:typical}Condici\'on final ($$t=0.6 s$$) para el tambor con frontera libre}
 \end{center}
 \end{figure}
-
-
+Con Base en los resultados expuestos se puede interpretar que cuando el tiempo transcurrido es m\'inimo no se observan difernecias muy notables, sin embargo, cuando se comparan los resultados cuando $t=0.06$ se puede observar que en tendencias generales, son las mismas puesto que la direcci\'on de propagaci\'on de la onda es la misma, considerando que el desplazamiento de la membrana en ambos casos fue casi el mismo, se presume que en tal caso de poseer una membrana con frontera fija, esta deber\'ia ser el\'astica, puesto que esta se estirar\'a. Otra diferencia que puede ser vista principalmente con las escalas de colores son las curvaturas que se generan en la membrana, que son notablemente mayores en la membrana libre, pero con un menor espaciamiento lo que puede indicar que la membrana no este en un momento de tensi\'on, opuesto al caso de frontera fija en donde las curvaturas son m\'inimas pero el espaciamiento es alto, lo que indica que debido a la necesidad de mantener las posiciones iniciales de la frontera, la membrana se estrese y se estire para no separarse.
 
 \end{document}

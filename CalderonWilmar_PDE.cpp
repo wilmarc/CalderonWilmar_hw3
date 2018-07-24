@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(){
-
+//Importa los datos.
 float data[10000];
 ifstream ifs;
 ifs.open("init.dat");
@@ -23,12 +23,8 @@ for(int j=0;j<n;j++){
 		condinic[j][i]=data[(j*n+i)];
 	}
 }
-/**
-for(int i=0;i<n;i++){
-	for (int j=0;j<n;j++){
-	cout<<condinic[0][j]<<endl;
-	}
-}**/
+
+//Abre los archivos frontfija.txt y frontlib.txt para escribir los datos en ellos.
 ofstream fronterafija;
 fronterafija.open("frontfija.txt");
 
@@ -49,6 +45,7 @@ float upre[n][n];
 float ufut[n][n];
 float x[n];
 float y[n];
+//inicialización de x y y.
 for (int i=0;i<n;i++){
 	if (i==0){
 	x[0]=-0.5;
@@ -62,6 +59,7 @@ for (int i=0;i<n;i++){
 }
 int cont1=0;
 int cont2=0;
+//Método de diferencias finitas para resolver el problema para la condiciòn de la membrana en el punto futuro k-ésimo
 for (int k=0;k<=nt;k++){
 	for(int i=0;i<n;i++){
 		for(int j=0;j<n;j++){
@@ -141,9 +139,9 @@ for(int i=0;i<n;i++){
 	}
 	for(int p=0;p<n;p++){
 		upre[0][p]=upre[1][p];
-		upre[n-1][p]=upre[n-1-1][p];
-		upre[p][0]=upre[p][0];
-		upre[p][n-1]=upre[p][n-1-1];
+		upre[n-1][p]=upre[n-2][p];
+		upre[p][0]=upre[p][1];
+		upre[p][n-1]=upre[p][n-2];
 	}
 	for (int i=0;i<n;i++){
 		for (int j=0;j<n;j++){
