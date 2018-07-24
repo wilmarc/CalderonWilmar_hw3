@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
 import matplotlib.animation as animation
 
 data=np.genfromtxt("particula.txt",delimiter=" ")
@@ -80,8 +81,8 @@ zf2=z2[inmax2]
 
 
 fig = plt.figure()
-ax = fig.add_subplot(111,projection= '3d')
-sc = ax.plot(xi1,yi1,zi1,c='b')
+ax = plt.axes(projection= '3d')
+ax.plot_trisurf(xi1,yi1,zi1,cmap="jet",linewidths=0.02)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
@@ -90,8 +91,8 @@ plt.tight_layout()
 plt.savefig("condicioniniFF.pdf")
 
 fig = plt.figure()
-ax = fig.add_subplot(111,projection= '3d')
-sc = ax.plot(xi2,yi2,zi2,c='b')
+ax = plt.axes(projection= '3d')
+ax.plot_trisurf(xi2,yi2,zi2,cmap="jet",linewidths=0.02)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
@@ -99,9 +100,10 @@ ax.set_title('Membrana del Tambor en $t=0$')
 plt.tight_layout()
 plt.savefig("condicioniniFL.pdf")
 
+
 fig = plt.figure()
-ax = fig.add_subplot(111,projection= '3d')
-sc = ax.plot(xf1,yf1,zf1,c='b')
+ax = plt.axes(projection= '3d')
+ax.plot_trisurf(xf1,yf1,zf1,cmap="jet",linewidths=0.02)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
@@ -110,12 +112,13 @@ plt.tight_layout()
 plt.savefig("condicionfinFF.pdf")
 
 fig = plt.figure()
-ax = fig.add_subplot(111,projection= '3d')
-sc = ax.plot(xf2,yf2,zf2,c='b')
+ax = plt.axes(projection= '3d')
+ax.plot_trisurf(xf2,yf2,zf2,cmap="jet",linewidths=0.02)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 ax.set_title('Membrana del Tambor con fronteras abiertas en $t=0.06$')
 plt.tight_layout()
 plt.savefig("condicionfinFL.pdf")
+plt.show()
 
